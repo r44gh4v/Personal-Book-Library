@@ -1,11 +1,29 @@
-/* Reset and general styles */
+/* === Reset Styles === */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Root variables for consistent styling */
+/* === Base Font Size === */
+html {
+    font-size: 16px;
+}
+
+/* === Responsive Font Sizes === */
+@media (max-width: 600px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1200px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+/* === CSS Variables === */
 :root {
     --primary-color: #d87c5d;
     --secondary-color: #e8c0a8;
@@ -14,7 +32,7 @@
     --card-background: #fff;
     --text-primary: #4a3f35;
     --text-secondary: #7f8c8d;
-    --border-radius: 12px;
+    --border-radius: 0.75rem;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
     --card-padding: 1rem;
@@ -23,7 +41,7 @@
     --section-spacing: 1.5rem;
 }
 
-/* Body styles for overall page appearance */
+/* === Body Styling === */
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--background-color);
@@ -35,16 +53,16 @@ body {
     align-items: center;
     min-height: 100vh;
     gap: 1.5rem;
+    font-size: 1rem;
 }
 
-/* Genre selector styles */
+/* === Genre Selector & Pills === */
 .genre-selector {
     width: 100%;
     overflow-x: auto;
     padding: 1rem 0;
 }
 
-/* Genre pills container */
 .genre-pills {
     display: flex;
     gap: 1rem;
@@ -53,106 +71,105 @@ body {
     scrollbar-width: none;
 }
 
-/* Hide scrollbar for WebKit browsers */
 .genre-pills::-webkit-scrollbar {
     display: none;
 }
 
-/* Individual genre pill styles */
 .genre-pill {
     background: var(--card-background);
     border: 2px solid var(--accent-color);
     padding: 0.75rem 1.5rem;
-    border-radius: 50px;
+    border-radius: 3.125rem;
     cursor: pointer;
     transition: var(--transition);
     font-size: 0.9rem;
     white-space: nowrap;
 }
 
-/* Hover effect for genre pills */
 .genre-pill:hover {
     background: var(--accent-color);
 }
 
-/* Active state for genre pills */
 .genre-pill.active {
     background: var(--primary-color);
     color: white;
     border-color: var(--primary-color);
 }
 
-/* Header styles for the pill-shaped header */
+/* === Header Section === */
 .pill-header {
     background-color: var(--primary-color);
     color: white;
     padding: 0.75rem 3rem;
     text-align: center;
-    width: fit-content;
-    border-radius: 50px;
+    border-radius: 3.125rem;
     box-shadow: var(--shadow);
     margin: 0 auto var(--header-margin);
 }
 
-/* Header text styles */
 .pill-header h1 {
     font-family: 'Instrument Serif', serif;
     font-size: 2.5rem;
     margin: 0;
 }
 
-/* Main content area styles */
+/* === Layout for Main and Sections === */
 main {
     width: 100%;
-    max-width: 1200px;
     margin-top: 1rem;
-    padding: 0 2rem;
+    padding: 0 1rem;
 }
 
-/* Section spacing */
 section {
     margin-bottom: 2rem;
 }
 
-/* Heading styles */
-h2 {
+h2,
+.section-header h2,
+#bookshelf-section h2 {
     font-family: 'Instrument Serif', serif;
     color: var(--primary-color);
     font-size: 2rem;
     margin-bottom: 0.5rem;
 }
 
-/* Styles for select elements */
+/* === Selectors Styling === */
 #genre-selector,
 #shelf-selector {
-    padding: 0.75rem;
-    border: 2px solid var (--accent-color);
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--accent-color);
     border-radius: var(--border-radius);
     font-size: 1rem;
-    transition: var (--transition);
-    appearance: none;
-    background: var(--card-background) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234a3f35'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") no-repeat right 0.75rem center / 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: var(--transition);
+    background: var(--card-background);
     min-width: 150px;
     outline: none;
     cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='none' stroke='%23666' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M19 9l-7 7-7-7'></path></svg>");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    padding-right: 2.5rem;
 }
 
-/* Hover effect for select elements */
 #genre-selector:hover,
 #shelf-selector:hover {
     border-color: var(--primary-color);
     cursor: pointer;
 }
 
-/* Focus effect for select elements */
 #genre-selector:focus,
 #shelf-selector:focus {
-    outline: none;
     border-color: var(--primary-color);
     box-shadow: var(--shadow);
+    background-color: var(--card-background);
 }
 
-/* Section header styles */
+/* === Section Headers === */
 .section-header {
     display: flex;
     justify-content: space-between;
@@ -160,33 +177,30 @@ h2 {
     margin-bottom: 1rem;
 }
 
-/* Section header heading styles */
 .section-header h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin: 0;
 }
 
-/* Suggestions container styles */
+/* === Suggestions & Slider === */
 .suggestions-container {
     position: relative;
     margin: 0.75rem 0;
     min-height: 300px;
 }
 
-/* Suggestions slider styles */
 .suggestions-slider {
     overflow: hidden;
     padding: 0.5rem 1rem;
     margin: 0 3rem;
 }
 
-/* Scroll button styles */
 .scroll-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     z-index: 2;
     background: var(--primary-color);
     color: white;
@@ -199,27 +213,23 @@ h2 {
     transition: var(--transition);
 }
 
-/* Scroll button hover effect */
 .scroll-btn:hover {
     background: #c26a4d;
 }
 
-/* Scroll button active effect */
 .scroll-btn:active {
     transform: translateY(-50%) scale(1.1);
 }
 
-/* Left scroll button position */
 .scroll-btn.left {
     left: 0;
 }
 
-/* Right scroll button position */
 .scroll-btn.right {
     right: 0;
 }
 
-/* Recommendations grid styles */
+/* === Recommendations Grid & Book Cards === */
 .recommendations-grid {
     display: flex;
     gap: 2rem;
@@ -229,16 +239,14 @@ h2 {
     scrollbar-width: none;
 }
 
-/* Hide scrollbar for WebKit browsers */
 .recommendations-grid::-webkit-scrollbar {
     display: none;
 }
 
-/* Book card styles */
 .book-card {
-    flex: 0 0 180px;
-    min-width: 0;
-    max-width: 180px;
+    flex: 0 0 11.25rem;
+    max-width: 11.25rem;
+    min-width: 11.25rem;
     background: var(--card-background);
     border-radius: var(--border-radius);
     padding: 0.75rem;
@@ -251,23 +259,21 @@ h2 {
     text-align: center;
 }
 
-/* Book card hover effect */
 .book-card:hover {
     transform: scale(1.02);
     box-shadow: var(--shadow), 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Book card image styles */
 .book-card img {
-    width: 100%;
-    height: 200px;
+    width: 9.75rem;
+    height: 12.5rem;
     object-fit: contain;
     border-radius: 4px;
-    margin-bottom: 0.25rem;
+    margin: 0 auto 0.25rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-background);
 }
 
-/* Book card heading styles */
 .book-card h4 {
     font-size: 1rem;
     line-height: 1.2;
@@ -284,7 +290,6 @@ h2 {
     height: 2.4em;
 }
 
-/* Book card paragraph styles */
 .book-card p {
     display: block;
     font-size: 0.8rem;
@@ -297,7 +302,6 @@ h2 {
     min-width: 0;
 }
 
-/* Book card actions styles */
 .book-card .actions {
     position: static;
     display: flex;
@@ -306,55 +310,48 @@ h2 {
     justify-content: center;
 }
 
-/* Book card action button styles */
 .book-card .action-btn {
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     padding: 0;
     font-size: 1rem;
 }
 
-/* Add button styles */
 .book-card .action-btn.add {
     background: var(--primary-color);
     color: white;
 }
 
-/* Add button hover effect */
 .book-card .action-btn.add:hover {
     background: #c26a4d;
 }
 
-/* Info button styles */
 .book-card .action-btn.info {
     background: var(--secondary-color);
     color: var(--text-primary);
 }
 
-/* Info button hover effect */
 .book-card .action-btn.info:hover {
     background: #d9a088;
 }
 
-/* Search container styles */
+/* === Search Container & Input Group === */
 .search-container {
     display: flex;
     gap: 1rem;
     margin-bottom: 2rem;
+    align-items: center;
 }
 
-/* Search wrapper styles */
 .search-wrapper {
     position: relative;
     flex: 1;
 }
 
-/* Search input group styles */
 .search-input-group {
     position: relative;
 }
 
-/* Search icon styles */
 .search-icon {
     position: absolute;
     left: 1rem;
@@ -363,7 +360,6 @@ h2 {
     color: var(--text-secondary);
 }
 
-/* Search bar styles */
 #search-bar {
     width: 100%;
     padding: 1rem 1rem 1rem 2.5rem;
@@ -374,14 +370,13 @@ h2 {
     outline: none;
 }
 
-/* Search bar focus effect */
 #search-bar:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: var(--shadow);
+    box-shadow: var (--shadow);
 }
 
-/* Search results styles */
+/* === Search Results === */
 .search-results {
     position: absolute;
     top: 100%;
@@ -391,70 +386,62 @@ h2 {
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     margin-top: 0.5rem;
-    max-height: 300px;
+    max-height: 18.75rem;
     overflow-y: auto;
     z-index: 10;
     display: none;
 }
 
-/* Active state for search results */
 .search-results.active {
     display: block;
 }
 
-/* Search result item styles */
 .search-result-item {
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--accent-color);
     cursor: pointer;
     transition: var(--transition);
     display: grid;
-    grid-template-columns: 40px 1fr;
+    grid-template-columns: 2.5rem 1fr;
     gap: 1rem;
     align-items: center;
 }
 
-/* Search result item hover effect */
 .search-result-item:hover {
     background: var(--accent-color);
 }
 
-/* Last search result item styles */
 .search-result-item:last-child {
     border-bottom: none;
 }
 
-/* Search result item image styles */
 .search-result-item img {
-    width: 40px;
-    height: 60px;
+    width: 2.5rem;
+    height: 3.75rem;
     object-fit: cover;
     border-radius: 4px;
 }
 
-/* Result info styles */
 .result-info {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
 }
 
-/* Result info strong styles */
 .result-info strong {
     font-size: 0.9rem;
     line-height: 1.2;
 }
 
-/* Result info small styles */
 .result-info small {
     color: var(--text-secondary);
     font-size: 0.8rem;
 }
 
-/* Add to shelf button styles */
+/* === Add-to-Shelf Button === */
 #add-to-shelf-button {
-    width: 50px;
-    height: 50px;
+    width: 3.125rem;
+    height: 3.125rem;
     background-color: var(--primary-color);
     color: #fff;
     border: none;
@@ -469,33 +456,24 @@ h2 {
     box-shadow: var(--shadow);
 }
 
-/* Add to shelf button hover effect */
 #add-to-shelf-button:hover {
     background-color: #c26a4d;
 }
 
-/* Add to shelf button active effect */
 #add-to-shelf-button:active {
     transform: scale(1.1);
 }
 
-/* Active state for add to shelf button */
 #add-to-shelf-button.active {
     opacity: 1;
 }
 
-/* Add to shelf button hover effect */
-#add-to-shelf-button:hover {
-    background-color: #92553d;
-}
-
-/* Disabled state for add to shelf button */
 #add-to-shelf-button:disabled {
     cursor: not-allowed;
     opacity: 0.5;
 }
 
-/* Shelf grid styles */
+/* === Shelf Grid & Items === */
 .shelf-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -503,17 +481,15 @@ h2 {
     align-items: start;
 }
 
-/* Shelf styles */
 .shelf {
     background: var(--card-background);
     border-radius: var(--border-radius);
     padding: 1.5rem;
     box-shadow: var(--shadow);
     height: fit-content;
-    min-height: 200px;
+    min-height: 12.5rem;
 }
 
-/* Shelf header styles */
 .shelf-header {
     display: flex;
     justify-content: space-between;
@@ -523,7 +499,6 @@ h2 {
     border-bottom: 2px solid var(--accent-color);
 }
 
-/* Shelf header heading styles */
 .shelf-header h3 {
     display: flex;
     align-items: center;
@@ -531,13 +506,11 @@ h2 {
     color: var(--primary-color);
 }
 
-/* Book count styles */
 .book-count {
     color: var (--text-secondary);
     font-size: 1rem;
 }
 
-/* Book list styles */
 .book-list {
     display: flex;
     flex-direction: column;
@@ -545,13 +518,12 @@ h2 {
     min-height: 50px;
 }
 
-/* Book item styles */
 .book-item {
     background: var(--background-color);
     padding: 0.75rem;
     border-radius: var(--border-radius);
     display: grid;
-    grid-template-columns: 40px 1fr auto;
+    grid-template-columns: 2.5rem 1fr auto;
     gap: 1rem;
     align-items: center;
     cursor: grab;
@@ -560,48 +532,41 @@ h2 {
     touch-action: none;
 }
 
-/* Book item active and dragging styles */
 .book-item:active,
 .book-item.dragging {
     cursor: grabbing;
     transform: scale(0.98);
 }
 
-/* Book item hover effect */
 .book-item:hover {
     transform: scale(1.02);
     background: var(--accent-color);
 }
 
-/* Shelf book list drag over styles */
 .shelf .book-list.drag-over {
     background: var(--accent-color);
     border-radius: var(--border-radius);
     padding: 0.5rem;
 }
 
-/* Shelf book list drag invalid styles */
 .shelf .book-list.drag-invalid {
     background: #ffdddd;
     border: 2px dashed #ff8888;
 }
 
-/* Book item image styles */
 .book-item img {
-    width: 40px;
-    height: 60px;
+    width: 2.5rem;
+    height: 3.75rem;
     object-fit: cover;
     border-radius: 4px;
 }
 
-/* Book info styles */
 .book-info {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
 }
 
-/* Book info small styles */
 .book-info small {
     display: block;
     width: 100%;
@@ -610,7 +575,6 @@ h2 {
     white-space: nowrap;
 }
 
-/* Book item book info strong styles */
 .book-item .book-info strong {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -623,7 +587,6 @@ h2 {
     font-size: 0.95rem;
 }
 
-/* Book item book info small styles */
 .book-item .book-info small {
     white-space: nowrap;
     overflow: hidden;
@@ -634,55 +597,49 @@ h2 {
     max-height: 1.2em;
 }
 
-/* Book item book info styles */
 .book-item .book-info {
     min-width: 0;
 }
 
-/* Remove button styles */
+/* === Remove Button === */
 .remove-btn {
-    width: 30px;
-    height: 30px;
+    width: 1.875rem;
+    height: 1.875rem;
     background: var(--accent-color);
     color: var(--text-primary);
     padding: 0;
 }
 
-/* Remove button hover effect */
 .remove-btn:hover {
     background: var(--primary-color);
     color: white;
 }
 
-/* Remove button active effect */
 .remove-btn:active {
     transform: scale(1.1);
 }
 
-/* Remove button btn styles */
 .remove-btn.btn {
     background: var(--accent-color);
     color: var(--text-primary);
     cursor: pointer;
 }
 
-/* Remove button btn hover effect */
 .remove-btn.btn:hover {
     background: var(--primary-color);
     color: #fff;
 }
 
-/* Controls styles */
+/* === Control Buttons === */
 .controls {
     display: flex;
     gap: 1rem;
     align-items: center;
 }
 
-/* Reload button styles */
 .reload-btn {
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     background: var(--primary-color);
     color: white;
     border: none;
@@ -694,25 +651,15 @@ h2 {
     transition: var(--transition);
 }
 
-/* Reload button hover effect */
 .reload-btn:hover {
     background: #c26a4d;
 }
 
-/* Reload button active effect */
 .reload-btn:active {
     transform: scale(1.1);
 }
 
-/* Section header heading styles */
-.section-header h2,
-#bookshelf-section h2 {
-    font-size: 2.5rem;
-    margin: 0;
-    margin-bottom: 1rem;
-}
-
-/* Loading overlay styles */
+/* === Loading Overlay === */
 .loading-overlay {
     position: absolute;
     top: 0;
@@ -727,7 +674,6 @@ h2 {
     backdrop-filter: blur(2px);
 }
 
-/* Loading overlay paragraph styles */
 .loading-overlay p {
     background: var(--card-background);
     padding: 1rem 2rem;
@@ -737,20 +683,19 @@ h2 {
     font-weight: 500;
 }
 
-/* Book card book info styles */
+/* === Adjustments for Book Card Info === */
 .book-card .book-info {
     width: 100%;
     min-width: 0;
     padding: 0 0.25rem;
 }
 
-/* Clickable styles */
+/* === Clickable and general button styles === */
 .clickable {
     cursor: pointer;
     transition: var(--transition);
 }
 
-/* Button styles */
 .btn {
     cursor: pointer;
     transition: var(--transition);
@@ -764,7 +709,111 @@ h2 {
     color: #fff;
 }
 
-/* Button active effect */
 .btn:active {
     transform: scale(1.1);
+}
+
+/* === Responsive Adjustments for Mobile === */
+@media (max-width: 600px) {
+    /* Hide scroll buttons on small screens */
+    .scroll-btn {
+        display: none;
+    }
+    
+    /* Adjust suggestions slider */
+    .suggestions-slider {
+        margin: 0;
+        padding: 0.5rem;
+    }
+    
+    /* Adjust main padding */
+    main {
+        padding: 0 0.5rem;
+    }
+    
+    /* Adjust shelf grid gaps */
+    .shelf-grid {
+        gap: 1rem;
+    }
+    
+    /* Adjust book card layout */
+    .book-card {
+        flex: 0 0 10rem;
+        max-width: 10rem;
+        min-width: 10rem;
+        padding: 0.5rem;
+    }
+    
+    .book-card img {
+        width: 8.5rem;
+        height: 11rem;
+        object-fit: contain;
+    }
+    
+    .pill-header h1 {
+        font-size: 2rem;
+    }
+    
+    h2,
+    .section-header h2,
+    #bookshelf-section h2 {
+        font-size: 1.75rem;
+    }
+    
+    #genre-selector,
+    #shelf-selector {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        min-width: 150px;
+        background-position: right 1rem center;
+        background-size: 1rem;
+        padding-right: 2.5rem;
+        border-width: 2px;
+    }
+    
+    /* Search container adjustments for mobile */
+    .search-container {
+        flex-direction: column; /* Stack items vertically */
+        align-items: stretch; /* Make items take full width */
+        gap: 0.5rem; /* Reduce gap for smaller screens */
+    }
+
+    .search-wrapper {
+        width: 100%; /* Ensure full width */
+    }
+
+    /* New container for selector and button */
+    .selector-button-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%; /* Take full width */
+    }
+
+    #shelf-selector {
+        flex-grow: 1; /* Expand to fill available space */
+        min-width: 0; /* Allow shrinking */
+    }
+
+    #add-to-shelf-button {
+        width: 3.125rem; /* Circular width */
+        height: 3.125rem; /* Circular height */
+        padding: 0; /* Remove padding */
+        border-radius: 50%; /* Circular border-radius */
+        font-size: 1.5rem; /* Adjust font-size */
+        margin-top: 0; /* Remove top margin */
+        margin-left: auto; /* Push button to the right */
+    }
+    
+    .book-card h4 {
+        font-size: 0.9rem;
+        line-height: 1.3;
+        height: 2.6em;
+        margin-top: 0.3rem;
+    }
+    
+    .book-card p {
+        font-size: 0.75rem;
+    }
 }

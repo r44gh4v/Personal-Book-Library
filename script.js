@@ -52,7 +52,7 @@ function setupEventListeners() {
     searchBar.addEventListener('input', debounce(handleSearch, 300));
     addToShelfButton.addEventListener('click', handleAddToShelf);
     setupDragAndDrop();
-    
+
     // Replace the previous blur listener with both blur and focus handlers
     searchBar.addEventListener('blur', (e) => {
         setTimeout(() => {
