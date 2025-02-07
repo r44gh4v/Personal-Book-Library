@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Library</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Pill-Shaped Header -->
+  <header class="pill-header">
+    <h1>Personal Library</h1>
+  </header>
+
+  <main>
+    <!-- Suggestions Section -->
+    <section id="suggestions-section">
+      <div class="section-header">
+        <h2>Suggestions</h2>
+        <div class="controls">
+          <button id="reload-suggestions" class="reload-btn" title="Refresh Suggestions">
+            <i class="fas fa-sync-alt"></i>
+          </button>
+          <select id="genre-selector" class="genre-dropdown">
+            <option value="random">Random</option>
+            <option value="fiction">Fiction</option>
+            <option value="nonfiction-books">Non-Fiction</option>
+            <option value="science">Science</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="mystery">Mystery</option>
+          </select>
+        </div>
+      </div>
+      <div class="suggestions-container">
+        <button class="scroll-btn left"><i class="fas fa-chevron-left"></i></button>
+        <div class="suggestions-slider">
+          <div id="recommendation-list" class="recommendations-grid"></div>
+        </div>
+        <button class="scroll-btn right"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </section>
+
+    <!-- Bookshelf Section -->
+    <section id="bookshelf-section">
+      <h2>Bookshelf</h2>
+      <div class="search-container">
+        <div class="search-wrapper">
+          <div class="search-input-group">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="search-bar" placeholder="Search books..." autocomplete="off">
+          </div>
+          <div id="search-results" class="search-results"></div>
+        </div>
+        <select id="shelf-selector">
+          <option value="toRead">To Read</option>
+          <option value="reading">Reading</option>
+          <option value="completed">Completed</option>
+        </select>
+        <button id="add-to-shelf-button" disabled>
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+      <div class="shelf-grid">
+        <div id="to-read" class="shelf">
+          <div class="shelf-header">
+            <h3><i class="fas fa-book-bookmark"></i> To Read</h3>
+            <span class="book-count" id="to-read-books-count">0 books</span>
+          </div>
+          <div class="book-list"></div>
+        </div>
+        <div id="reading" class="shelf">
+          <div class="shelf-header">
+            <h3><i class="fas fa-book-open-reader"></i> Reading</h3>
+            <span class="book-count" id="reading-books-count">0 books</span>
+          </div>
+          <div class="book-list"></div>
+        </div>
+        <div id="completed" class="shelf">
+          <div class="shelf-header">
+            <h3><i class="fas fa-check-circle"></i> Completed</h3>
+            <span class="book-count" id="completed-books-count">0 books</span>
+          </div>
+          <div class="book-list"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- This is just a reference template for the JavaScript -->
+  <template id="book-item-template" style="display: none;">
+    <div class="book-item" draggable="true">
+      <img src="" alt="">
+      <div class="book-info">
+        <strong></strong>
+        <small></small>
+      </div>
+      <button class="remove-btn" title="Remove">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </template>
+
+  <!-- Link to JavaScript File -->
+  <script src="script.js"></script>
+</body>
+
+</html>
