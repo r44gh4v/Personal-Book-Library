@@ -1,4 +1,4 @@
-// DOM Elements
+// Get references to DOM elements
 const recommendationList = document.getElementById('recommendation-list');
 const genreSelector = document.getElementById('genre-selector');
 const reloadBtn = document.getElementById('reload-suggestions');
@@ -8,6 +8,8 @@ const shelfSelector = document.getElementById('shelf-selector');
 const addToShelfButton = document.getElementById('add-to-shelf-button');
 const scrollLeftBtn = document.querySelector('.scroll-btn.left');
 const scrollRightBtn = document.querySelector('.scroll-btn.right');
+
+// Define shelves and counters
 const shelves = {
     toRead: document.querySelector('#to-read .book-list'),
     reading: document.querySelector('#reading .book-list'),
@@ -19,7 +21,7 @@ const counters = {
     completed: document.querySelector('#completed-books-count')
 };
 
-// State
+// Initialize variables
 let selectedBook = null;
 let library = JSON.parse(localStorage.getItem('library')) || {
     toRead: [],
@@ -27,23 +29,22 @@ let library = JSON.parse(localStorage.getItem('library')) || {
     completed: []
 };
 
-// Add this helper function near the top (e.g., after state declarations)
+// Function to truncate text
 function truncateText(text, maxLength) {
     return text.length > maxLength ? text.substring(0, maxLength) + '…' : text;
 }
 
-// Initialize
+// Initialize the application
 async function init() {
     setupEventListeners();
-    await fetchRecommendations(); // Always fetch on initial load
+    await fetchRecommendations();
     updateAllShelves();
 }
 
-// Event Listeners
+// Setup event listeners for various actions
 function setupEventListeners() {
     reloadBtn.addEventListener('click', fetchRecommendations);
     genreSelector.addEventListener('change', () => {
-        // Fetch new recommendations whenever genre changes
         fetchRecommendations();
     });
     scrollLeftBtn.addEventListener('click', () => scrollRecommendations('left'));
@@ -51,13 +52,25 @@ function setupEventListeners() {
     searchBar.addEventListener('input', debounce(handleSearch, 300));
     addToShelfButton.addEventListener('click', handleAddToShelf);
     setupDragAndDrop();
+    
+    // Replace the previous blur listener with both blur and focus handlers
+    searchBar.addEventListener('blur', (e) => {
+        setTimeout(() => {
+            searchResults.classList.remove('active');
+        }, 200);
+    });
+
+    searchBar.addEventListener('focus', (e) => {
+        if (searchBar.value.trim().length >= 1) {
+            handleSearch(e);
+        }
+    });
 }
 
-// Updated fetch recommendations
+// Fetch book recommendations from the Google Books API
 async function fetchRecommendations() {
     const genre = genreSelector.value;
     let query;
-
     switch (genre) {
         case 'random':
             query = getRandomSearchQuery();
@@ -68,23 +81,17 @@ async function fetchRecommendations() {
         default:
             query = `subject:"${genre}"`;
     }
-
-    // Create loading overlay
     const loadingOverlay = document.createElement('div');
     loadingOverlay.className = 'loading-overlay';
     loadingOverlay.innerHTML = '<p>Loading...</p>';
     document.querySelector('.suggestions-container').appendChild(loadingOverlay);
-
     try {
-        // Add random offset and ordering
-        const randomOffset = Math.floor(Math.random() * 100); // Random starting point
+        const randomOffset = Math.floor(Math.random() * 100);
         const response = await fetch(
             `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=12&startIndex=${randomOffset}&orderBy=relevance&langRestrict=en`
         );
         const data = await response.json();
-
         if (data.items) {
-            // Shuffle the results before displaying
             const shuffledItems = [...data.items].sort(() => Math.random() - 0.5);
             displayRecommendations(shuffledItems);
         }
@@ -96,7 +103,7 @@ async function fetchRecommendations() {
     }
 }
 
-// Get random search query
+// Get a random search query for diverse recommendations
 function getRandomSearchQuery() {
     const queries = [
         'bestseller', 'award winning', 'popular', 'classic literature',
@@ -107,25 +114,21 @@ function getRandomSearchQuery() {
     return queries[Math.floor(Math.random() * queries.length)];
 }
 
-// Helper function to get secure image URL with fallback
+// Get a secure image URL for the book cover
 function getSecureImageUrl(volumeInfo) {
     if (!volumeInfo.imageLinks) {
         return 'https://via.placeholder.com/128x192?text=No+Cover';
     }
-
-    // Try thumbnail first, then smallThumbnail, convert to https
     const imageUrl = (volumeInfo.imageLinks.thumbnail || volumeInfo.imageLinks.smallThumbnail || '')
         .replace('http://', 'https://');
-
     return imageUrl || 'https://via.placeholder.com/128x192?text=No+Cover';
 }
 
-// Display recommendations
+// Display book recommendations in the UI
 function displayRecommendations(books) {
     recommendationList.innerHTML = books.map(book => {
         const { volumeInfo } = book;
         const coverUrl = getSecureImageUrl(volumeInfo);
-
         return `
             <div class="book-card">
                 <img src="${coverUrl}" alt="${volumeInfo.title}" 
@@ -150,17 +153,16 @@ function displayRecommendations(books) {
     }).join('');
 }
 
-// Updated scroll recommendations
+// Scroll the recommendations horizontally
 function scrollRecommendations(direction) {
-    // Card width (180px) + gap (2rem = 32px) * 2 cards
-    const scrollAmount = (180 + 32) * 2; // 424px total scroll distance
+    const scrollAmount = (180 + 32) * 2;
     recommendationList.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
     });
 }
 
-// Handle search with images
+// Handle the search input and display search results
 async function handleSearch(event) {
     const query = event.target.value.trim();
     if (query.length < 2) {
@@ -168,13 +170,11 @@ async function handleSearch(event) {
         addToShelfButton.disabled = true;
         return;
     }
-
     try {
         const response = await fetch(
             `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=5&langRestrict=en`
         );
         const data = await response.json();
-
         if (data.items) {
             displaySearchResults(data.items);
         }
@@ -183,7 +183,7 @@ async function handleSearch(event) {
     }
 }
 
-// Display search results with images
+// Display search results in the UI
 function displaySearchResults(books) {
     searchResults.innerHTML = books.map(book => {
         const coverUrl = getSecureImageUrl(book.volumeInfo);
@@ -201,7 +201,7 @@ function displaySearchResults(books) {
     searchResults.classList.add('active');
 }
 
-// Select search result
+// Select a search result and populate the search bar
 async function selectSearchResult(bookId) {
     const bookData = await fetchVolume(bookId);
     if (!bookData) return;
@@ -212,25 +212,21 @@ async function selectSearchResult(bookId) {
     addToShelfButton.classList.add('active');
 }
 
-// Handle adding book to shelf
+// Handle adding a book to a shelf
 function handleAddToShelf() {
     if (!selectedBook) return;
-
     const shelfKey = shelfSelector.value;
     addBookToShelf(selectedBook.id, shelfKey);
-
-    // Reset search state
     searchBar.value = '';
     selectedBook = null;
     addToShelfButton.disabled = true;
     addToShelfButton.classList.remove('active');
 }
 
-// Add book to shelf
+// Add a book to a specific shelf
 async function addBookToShelf(bookId, shelfKey) {
     const bookData = await fetchVolume(bookId);
     if (!bookData) return;
-
     if (!library[shelfKey].some(b => b.id === bookData.id)) {
         library[shelfKey].push({
             id: bookData.id,
@@ -238,13 +234,12 @@ async function addBookToShelf(bookId, shelfKey) {
             author: bookData.volumeInfo.authors?.[0] || 'Unknown Author',
             cover: getSecureImageUrl(bookData.volumeInfo)
         });
-
         updateShelf(shelfKey);
         saveLibrary();
     }
 }
 
-// Update shelf display function: remove JS-based truncation to let CSS handle text overflow
+// Update the UI for a specific shelf
 function updateShelf(shelfKey) {
     const shelf = shelves[shelfKey];
     shelf.innerHTML = library[shelfKey].map(book => `
@@ -259,25 +254,22 @@ function updateShelf(shelfKey) {
             </button>
         </div>
     `).join('');
-
     counters[shelfKey].textContent = `${library[shelfKey].length} books`;
     setupDragAndDrop();
 }
 
-// Update all shelves
+// Update all shelves in the UI
 function updateAllShelves() {
     Object.keys(shelves).forEach(updateShelf);
 }
 
-// Setup drag and drop
+// Setup drag and drop functionality for book items
 function setupDragAndDrop() {
     const bookItems = document.querySelectorAll('.book-item');
     bookItems.forEach(item => {
         item.addEventListener('dragstart', handleDragStart);
         item.addEventListener('dragend', handleDragEnd);
     });
-
-    // Change: Add event listeners to shelf containers instead of book lists
     document.querySelectorAll('.shelf').forEach(shelf => {
         shelf.addEventListener('dragover', handleDragOver);
         shelf.addEventListener('dragleave', handleDragLeave);
@@ -285,82 +277,77 @@ function setupDragAndDrop() {
     });
 }
 
-// Updated drag and drop handlers
+// Handle the start of a drag event
 function handleDragStart(e) {
     e.target.classList.add('dragging');
     e.dataTransfer.setData('text/plain', e.target.dataset.bookId);
     e.dataTransfer.effectAllowed = 'move';
 }
 
+// Handle the end of a drag event
 function handleDragEnd(e) {
     e.target.classList.remove('dragging');
-    // Remove drop zone highlighting
     document.querySelectorAll('.book-list').forEach(list => {
         list.classList.remove('drag-over');
     });
 }
 
+// Handle the drag over event
 function handleDragOver(e) {
     e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
-    // Add visual feedback for drop zone to the book-list inside the shelf
     const bookList = e.currentTarget.querySelector('.book-list');
     bookList.classList.add('drag-over');
 }
 
+// Handle the drag leave event
 function handleDragLeave(e) {
-    // Only remove highlight if we're leaving the shelf entirely
     if (!e.currentTarget.contains(e.relatedTarget)) {
         const bookList = e.currentTarget.querySelector('.book-list');
         bookList.classList.remove('drag-over');
     }
 }
 
+// Handle the drop event
 function handleDrop(e) {
     e.preventDefault();
     const bookId = e.dataTransfer.getData('text/plain');
     const targetShelf = e.currentTarget.id;
     const targetShelfKey = targetShelf === 'to-read' ? 'toRead' :
         targetShelf === 'reading' ? 'reading' : 'completed';
-
     moveBookToShelf(bookId, targetShelfKey);
-
-    // Remove drop zone highlighting from all book lists
     document.querySelectorAll('.book-list').forEach(list => {
         list.classList.remove('drag-over');
     });
 }
 
-// Move book between shelves
+// Move a book to a different shelf
 function moveBookToShelf(bookId, targetShelfKey) {
     const sourceShelfKey = Object.keys(library).find(key =>
         library[key].some(book => book.id === bookId)
     );
-
     if (sourceShelfKey === targetShelfKey) return;
-
     const bookIndex = library[sourceShelfKey].findIndex(book => book.id === bookId);
     const [book] = library[sourceShelfKey].splice(bookIndex, 1);
     library[targetShelfKey].push(book);
-
     updateShelf(sourceShelfKey);
     updateShelf(targetShelfKey);
     saveLibrary();
 }
 
-// Remove book from shelf
+// Remove a book from a shelf
 function removeBook(bookId, shelfKey) {
     library[shelfKey] = library[shelfKey].filter(book => book.id !== bookId);
     updateShelf(shelfKey);
     saveLibrary();
 }
 
-// Save library to localStorage
+// Save the library to local storage
 function saveLibrary() {
     localStorage.setItem('library', JSON.stringify(library));
 }
 
-// Debounce function
+// Debounce function to limit the rate of function execution
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -373,6 +360,7 @@ function debounce(func, wait) {
     };
 }
 
+// Fetch book volume data from the Google Books API
 async function fetchVolume(bookId) {
     try {
         const response = await fetch(`https://www.googleapis.com/books/v1/volumes/${bookId}`);
@@ -383,5 +371,5 @@ async function fetchVolume(bookId) {
     }
 }
 
-// Initialize the app
+// Initialize the application
 init();

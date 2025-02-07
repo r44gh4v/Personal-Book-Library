@@ -5,27 +5,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Personal Library</title>
+  <!-- Font Awesome CSS for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts - Inter and Instrument Serif -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif&display=swap"
     rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <!-- Pill-Shaped Header -->
+  <!-- Header Section -->
   <header class="pill-header">
     <h1>Personal Library</h1>
   </header>
 
+  <!-- Main Content Section -->
   <main>
     <!-- Suggestions Section -->
     <section id="suggestions-section">
       <div class="section-header">
         <h2>Suggestions</h2>
+        <!-- Controls for Suggestions Section -->
         <div class="controls">
+          <!-- Reload Suggestions Button -->
           <button id="reload-suggestions" class="reload-btn" title="Refresh Suggestions">
             <i class="fas fa-sync-alt"></i>
           </button>
+          <!-- Genre Selector Dropdown -->
           <select id="genre-selector" class="genre-dropdown">
             <option value="random">Random</option>
             <option value="fiction">Fiction</option>
@@ -36,11 +43,16 @@
           </select>
         </div>
       </div>
+      <!-- Suggestions Container -->
       <div class="suggestions-container">
+        <!-- Scroll Left Button -->
         <button class="scroll-btn left"><i class="fas fa-chevron-left"></i></button>
+        <!-- Suggestions Slider -->
         <div class="suggestions-slider">
+          <!-- Recommendation List -->
           <div id="recommendation-list" class="recommendations-grid"></div>
         </div>
+        <!-- Scroll Right Button -->
         <button class="scroll-btn right"><i class="fas fa-chevron-right"></i></button>
       </div>
     </section>
@@ -48,50 +60,64 @@
     <!-- Bookshelf Section -->
     <section id="bookshelf-section">
       <h2>Bookshelf</h2>
+      <!-- Search Container -->
       <div class="search-container">
+        <!-- Search Wrapper -->
         <div class="search-wrapper">
+          <!-- Search Input Group -->
           <div class="search-input-group">
             <i class="fas fa-search search-icon"></i>
+            <!-- Search Bar -->
             <input type="text" id="search-bar" placeholder="Search books..." autocomplete="off">
           </div>
+          <!-- Search Results -->
           <div id="search-results" class="search-results"></div>
         </div>
+        <!-- Shelf Selector -->
         <select id="shelf-selector">
           <option value="toRead">To Read</option>
           <option value="reading">Reading</option>
           <option value="completed">Completed</option>
         </select>
+        <!-- Add to Shelf Button -->
         <button id="add-to-shelf-button" disabled>
           <i class="fas fa-plus"></i>
         </button>
       </div>
+      <!-- Shelf Grid -->
       <div class="shelf-grid">
+        <!-- To Read Shelf -->
         <div id="to-read" class="shelf">
           <div class="shelf-header">
             <h3><i class="fas fa-book-bookmark"></i> To Read</h3>
             <span class="book-count" id="to-read-books-count">0 books</span>
           </div>
+          <!-- Book List for To Read -->
           <div class="book-list"></div>
         </div>
+        <!-- Reading Shelf -->
         <div id="reading" class="shelf">
           <div class="shelf-header">
             <h3><i class="fas fa-book-open-reader"></i> Reading</h3>
             <span class="book-count" id="reading-books-count">0 books</span>
           </div>
+          <!-- Book List for Reading -->
           <div class="book-list"></div>
         </div>
+        <!-- Completed Shelf -->
         <div id="completed" class="shelf">
           <div class="shelf-header">
             <h3><i class="fas fa-check-circle"></i> Completed</h3>
             <span class="book-count" id="completed-books-count">0 books</span>
           </div>
+          <!-- Book List for Completed -->
           <div class="book-list"></div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- This is just a reference template for the JavaScript -->
+  <!-- Book Item Template (Hidden) -->
   <template id="book-item-template" style="display: none;">
     <div class="book-item" draggable="true">
       <img src="" alt="">
@@ -105,7 +131,7 @@
     </div>
   </template>
 
-  <!-- Link to JavaScript File -->
+  <!-- JavaScript File -->
   <script src="script.js"></script>
 </body>
 

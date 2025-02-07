@@ -1,10 +1,11 @@
-/* General Styles */
+/* Reset and general styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Root variables for consistent styling */
 :root {
     --primary-color: #d87c5d;
     --secondary-color: #e8c0a8;
@@ -22,6 +23,7 @@
     --section-spacing: 1.5rem;
 }
 
+/* Body styles for overall page appearance */
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--background-color);
@@ -35,13 +37,14 @@ body {
     gap: 1.5rem;
 }
 
-/* Genre Pills */
+/* Genre selector styles */
 .genre-selector {
     width: 100%;
     overflow-x: auto;
     padding: 1rem 0;
 }
 
+/* Genre pills container */
 .genre-pills {
     display: flex;
     gap: 1rem;
@@ -50,10 +53,12 @@ body {
     scrollbar-width: none;
 }
 
+/* Hide scrollbar for WebKit browsers */
 .genre-pills::-webkit-scrollbar {
     display: none;
 }
 
+/* Individual genre pill styles */
 .genre-pill {
     background: var(--card-background);
     border: 2px solid var(--accent-color);
@@ -65,17 +70,19 @@ body {
     white-space: nowrap;
 }
 
+/* Hover effect for genre pills */
 .genre-pill:hover {
     background: var(--accent-color);
 }
 
+/* Active state for genre pills */
 .genre-pill.active {
     background: var(--primary-color);
     color: white;
     border-color: var(--primary-color);
 }
 
-/* Pill-Shaped Header */
+/* Header styles for the pill-shaped header */
 .pill-header {
     background-color: var(--primary-color);
     color: white;
@@ -87,13 +94,14 @@ body {
     margin: 0 auto var(--header-margin);
 }
 
+/* Header text styles */
 .pill-header h1 {
     font-family: 'Instrument Serif', serif;
     font-size: 2.5rem;
     margin: 0;
 }
 
-/* Main Content */
+/* Main content area styles */
 main {
     width: 100%;
     max-width: 1200px;
@@ -101,10 +109,12 @@ main {
     padding: 0 2rem;
 }
 
+/* Section spacing */
 section {
     margin-bottom: 2rem;
 }
 
+/* Heading styles */
 h2 {
     font-family: 'Instrument Serif', serif;
     color: var(--primary-color);
@@ -112,14 +122,14 @@ h2 {
     margin-bottom: 0.5rem;
 }
 
-/* Dropdowns */
+/* Styles for select elements */
 #genre-selector,
 #shelf-selector {
     padding: 0.75rem;
-    border: 2px solid var(--accent-color);
+    border: 2px solid var (--accent-color);
     border-radius: var(--border-radius);
     font-size: 1rem;
-    transition: var(--transition);
+    transition: var (--transition);
     appearance: none;
     background: var(--card-background) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234a3f35'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") no-repeat right 0.75rem center / 1rem;
     min-width: 150px;
@@ -127,12 +137,14 @@ h2 {
     cursor: pointer;
 }
 
+/* Hover effect for select elements */
 #genre-selector:hover,
 #shelf-selector:hover {
     border-color: var(--primary-color);
     cursor: pointer;
 }
 
+/* Focus effect for select elements */
 #genre-selector:focus,
 #shelf-selector:focus {
     outline: none;
@@ -140,7 +152,7 @@ h2 {
     box-shadow: var(--shadow);
 }
 
-/* Suggestions Section */
+/* Section header styles */
 .section-header {
     display: flex;
     justify-content: space-between;
@@ -148,26 +160,27 @@ h2 {
     margin-bottom: 1rem;
 }
 
+/* Section header heading styles */
 .section-header h2 {
     font-size: 2.5rem;
     margin: 0;
 }
 
+/* Suggestions container styles */
 .suggestions-container {
     position: relative;
     margin: 0.75rem 0;
-    /* Reduced from 1rem */
     min-height: 300px;
-    /* Ensure minimum height */
 }
 
+/* Suggestions slider styles */
 .suggestions-slider {
     overflow: hidden;
     padding: 0.5rem 1rem;
-    /* Reduced top/bottom padding */
     margin: 0 3rem;
 }
 
+/* Scroll button styles */
 .scroll-btn {
     position: absolute;
     top: 50%;
@@ -186,22 +199,27 @@ h2 {
     transition: var(--transition);
 }
 
+/* Scroll button hover effect */
 .scroll-btn:hover {
     background: #c26a4d;
 }
 
+/* Scroll button active effect */
 .scroll-btn:active {
     transform: translateY(-50%) scale(1.1);
 }
 
+/* Left scroll button position */
 .scroll-btn.left {
     left: 0;
 }
 
+/* Right scroll button position */
 .scroll-btn.right {
     right: 0;
 }
 
+/* Recommendations grid styles */
 .recommendations-grid {
     display: flex;
     gap: 2rem;
@@ -211,10 +229,12 @@ h2 {
     scrollbar-width: none;
 }
 
+/* Hide scrollbar for WebKit browsers */
 .recommendations-grid::-webkit-scrollbar {
     display: none;
 }
 
+/* Book card styles */
 .book-card {
     flex: 0 0 180px;
     min-width: 0;
@@ -231,12 +251,13 @@ h2 {
     text-align: center;
 }
 
+/* Book card hover effect */
 .book-card:hover {
-    transform: scale(1.02); /* grow slightly on hover */
+    transform: scale(1.02);
     box-shadow: var(--shadow), 0 6px 12px rgba(0, 0, 0, 0.1);
-    /* Added deeper shadow and scale on hover */
 }
 
+/* Book card image styles */
 .book-card img {
     width: 100%;
     height: 200px;
@@ -246,7 +267,7 @@ h2 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Book Card Title */
+/* Book card heading styles */
 .book-card h4 {
     font-size: 1rem;
     line-height: 1.2;
@@ -261,10 +282,9 @@ h2 {
     text-overflow: ellipsis;
     max-width: 100%;
     height: 2.4em;
-    /* 2 lines * 1.2 line-height */
 }
 
-/* Book Card Author */
+/* Book card paragraph styles */
 .book-card p {
     display: block;
     font-size: 0.8rem;
@@ -277,6 +297,7 @@ h2 {
     min-width: 0;
 }
 
+/* Book card actions styles */
 .book-card .actions {
     position: static;
     display: flex;
@@ -285,6 +306,7 @@ h2 {
     justify-content: center;
 }
 
+/* Book card action button styles */
 .book-card .action-btn {
     width: 40px;
     height: 40px;
@@ -292,40 +314,47 @@ h2 {
     font-size: 1rem;
 }
 
+/* Add button styles */
 .book-card .action-btn.add {
     background: var(--primary-color);
     color: white;
 }
 
+/* Add button hover effect */
 .book-card .action-btn.add:hover {
     background: #c26a4d;
 }
 
+/* Info button styles */
 .book-card .action-btn.info {
     background: var(--secondary-color);
     color: var(--text-primary);
 }
 
+/* Info button hover effect */
 .book-card .action-btn.info:hover {
     background: #d9a088;
 }
 
-/* Search in Bookshelf */
+/* Search container styles */
 .search-container {
     display: flex;
     gap: 1rem;
     margin-bottom: 2rem;
 }
 
+/* Search wrapper styles */
 .search-wrapper {
     position: relative;
     flex: 1;
 }
 
+/* Search input group styles */
 .search-input-group {
     position: relative;
 }
 
+/* Search icon styles */
 .search-icon {
     position: absolute;
     left: 1rem;
@@ -334,6 +363,7 @@ h2 {
     color: var(--text-secondary);
 }
 
+/* Search bar styles */
 #search-bar {
     width: 100%;
     padding: 1rem 1rem 1rem 2.5rem;
@@ -344,12 +374,14 @@ h2 {
     outline: none;
 }
 
+/* Search bar focus effect */
 #search-bar:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: var(--shadow);
 }
 
+/* Search results styles */
 .search-results {
     position: absolute;
     top: 100%;
@@ -365,10 +397,12 @@ h2 {
     display: none;
 }
 
+/* Active state for search results */
 .search-results.active {
     display: block;
 }
 
+/* Search result item styles */
 .search-result-item {
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--accent-color);
@@ -380,14 +414,17 @@ h2 {
     align-items: center;
 }
 
+/* Search result item hover effect */
 .search-result-item:hover {
     background: var(--accent-color);
 }
 
+/* Last search result item styles */
 .search-result-item:last-child {
     border-bottom: none;
 }
 
+/* Search result item image styles */
 .search-result-item img {
     width: 40px;
     height: 60px;
@@ -395,22 +432,26 @@ h2 {
     border-radius: 4px;
 }
 
+/* Result info styles */
 .result-info {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
 }
 
+/* Result info strong styles */
 .result-info strong {
     font-size: 0.9rem;
     line-height: 1.2;
 }
 
+/* Result info small styles */
 .result-info small {
     color: var(--text-secondary);
     font-size: 0.8rem;
 }
 
+/* Add to shelf button styles */
 #add-to-shelf-button {
     width: 50px;
     height: 50px;
@@ -424,56 +465,55 @@ h2 {
     justify-content: center;
     cursor: pointer;
     transition: var(--transition);
-    margin-left: 0; /* use flex gap; match spacing with search bar and dropdown */
+    margin-left: 0;
     box-shadow: var(--shadow);
 }
 
+/* Add to shelf button hover effect */
 #add-to-shelf-button:hover {
     background-color: #c26a4d;
 }
 
+/* Add to shelf button active effect */
 #add-to-shelf-button:active {
-    transform: scale(0.95);
+    transform: scale(1.1);
 }
 
+/* Active state for add to shelf button */
 #add-to-shelf-button.active {
     opacity: 1;
 }
 
+/* Add to shelf button hover effect */
 #add-to-shelf-button:hover {
     background-color: #92553d;
 }
 
-#add-to-shelf-button:active {
-    transform: scale(1.1);
-    /* Add transform on click */
-}
-
+/* Disabled state for add to shelf button */
 #add-to-shelf-button:disabled {
     cursor: not-allowed;
     opacity: 0.5;
 }
 
-/* Shelves */
+/* Shelf grid styles */
 .shelf-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     align-items: start;
-    /* Add this to prevent stretching */
 }
 
+/* Shelf styles */
 .shelf {
     background: var(--card-background);
     border-radius: var(--border-radius);
     padding: 1.5rem;
     box-shadow: var(--shadow);
     height: fit-content;
-    /* Add this to make height independent */
     min-height: 200px;
-    /* Add minimum height */
 }
 
+/* Shelf header styles */
 .shelf-header {
     display: flex;
     justify-content: space-between;
@@ -483,6 +523,7 @@ h2 {
     border-bottom: 2px solid var(--accent-color);
 }
 
+/* Shelf header heading styles */
 .shelf-header h3 {
     display: flex;
     align-items: center;
@@ -490,19 +531,21 @@ h2 {
     color: var(--primary-color);
 }
 
+/* Book count styles */
 .book-count {
-    color: var(--text-secondary);
+    color: var (--text-secondary);
     font-size: 1rem;
 }
 
+/* Book list styles */
 .book-list {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
     min-height: 50px;
-    /* Ensure there's always space to drop */
 }
 
+/* Book item styles */
 .book-item {
     background: var(--background-color);
     padding: 0.75rem;
@@ -517,28 +560,33 @@ h2 {
     touch-action: none;
 }
 
+/* Book item active and dragging styles */
 .book-item:active,
 .book-item.dragging {
     cursor: grabbing;
     transform: scale(0.98);
 }
 
+/* Book item hover effect */
 .book-item:hover {
     transform: scale(1.02);
     background: var(--accent-color);
 }
 
+/* Shelf book list drag over styles */
 .shelf .book-list.drag-over {
     background: var(--accent-color);
     border-radius: var(--border-radius);
     padding: 0.5rem;
 }
 
+/* Shelf book list drag invalid styles */
 .shelf .book-list.drag-invalid {
     background: #ffdddd;
     border: 2px dashed #ff8888;
 }
 
+/* Book item image styles */
 .book-item img {
     width: 40px;
     height: 60px;
@@ -546,12 +594,14 @@ h2 {
     border-radius: 4px;
 }
 
+/* Book info styles */
 .book-info {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
 }
 
+/* Book info small styles */
 .book-info small {
     display: block;
     width: 100%;
@@ -560,20 +610,20 @@ h2 {
     white-space: nowrap;
 }
 
+/* Book item book info strong styles */
 .book-item .book-info strong {
     display: -webkit-box;
     -webkit-line-clamp: 2;
-    /* Changed from 1 to 2 lines */
     line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 1.2;
     max-height: 2.4em;
-    /* Changed to accommodate 2 lines */
     font-size: 0.95rem;
 }
 
+/* Book item book info small styles */
 .book-item .book-info small {
     white-space: nowrap;
     overflow: hidden;
@@ -584,48 +634,52 @@ h2 {
     max-height: 1.2em;
 }
 
+/* Book item book info styles */
 .book-item .book-info {
     min-width: 0;
-    /* Ensure the container doesn't grow beyond available space */
 }
 
+/* Remove button styles */
 .remove-btn {
     width: 30px;
     height: 30px;
     background: var(--accent-color);
-    /* Fixed missing space in var() */
     color: var(--text-primary);
     padding: 0;
 }
 
+/* Remove button hover effect */
 .remove-btn:hover {
     background: var(--primary-color);
     color: white;
 }
 
+/* Remove button active effect */
 .remove-btn:active {
     transform: scale(1.1);
-    /* Add transform on click */
 }
 
+/* Remove button btn styles */
 .remove-btn.btn {
     background: var(--accent-color);
     color: var(--text-primary);
     cursor: pointer;
 }
 
+/* Remove button btn hover effect */
 .remove-btn.btn:hover {
     background: var(--primary-color);
     color: #fff;
 }
 
-/* Controls Section */
+/* Controls styles */
 .controls {
     display: flex;
     gap: 1rem;
     align-items: center;
 }
 
+/* Reload button styles */
 .reload-btn {
     width: 40px;
     height: 40px;
@@ -640,15 +694,17 @@ h2 {
     transition: var(--transition);
 }
 
+/* Reload button hover effect */
 .reload-btn:hover {
     background: #c26a4d;
 }
 
+/* Reload button active effect */
 .reload-btn:active {
     transform: scale(1.1);
 }
 
-/* Section Headers */
+/* Section header heading styles */
 .section-header h2,
 #bookshelf-section h2 {
     font-size: 2.5rem;
@@ -656,7 +712,7 @@ h2 {
     margin-bottom: 1rem;
 }
 
-/* Loading State */
+/* Loading overlay styles */
 .loading-overlay {
     position: absolute;
     top: 0;
@@ -671,6 +727,7 @@ h2 {
     backdrop-filter: blur(2px);
 }
 
+/* Loading overlay paragraph styles */
 .loading-overlay p {
     background: var(--card-background);
     padding: 1rem 2rem;
@@ -680,17 +737,20 @@ h2 {
     font-weight: 500;
 }
 
+/* Book card book info styles */
 .book-card .book-info {
     width: 100%;
     min-width: 0;
     padding: 0 0.25rem;
 }
 
+/* Clickable styles */
 .clickable {
     cursor: pointer;
     transition: var(--transition);
 }
 
+/* Button styles */
 .btn {
     cursor: pointer;
     transition: var(--transition);
@@ -704,6 +764,7 @@ h2 {
     color: #fff;
 }
 
+/* Button active effect */
 .btn:active {
     transform: scale(1.1);
 }
