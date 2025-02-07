@@ -232,8 +232,9 @@ h2 {
 }
 
 .book-card:hover {
+    transform: scale(1.02); /* grow slightly on hover */
     box-shadow: var(--shadow), 0 6px 12px rgba(0, 0, 0, 0.1);
-    /* Added deeper shadow */
+    /* Added deeper shadow and scale on hover */
 }
 
 .book-card img {
@@ -411,10 +412,28 @@ h2 {
 }
 
 #add-to-shelf-button {
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
     font-size: 1.5rem;
-    opacity: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-left: 0; /* use flex gap; match spacing with search bar and dropdown */
+    box-shadow: var(--shadow);
+}
+
+#add-to-shelf-button:hover {
+    background-color: #c26a4d;
+}
+
+#add-to-shelf-button:active {
+    transform: scale(0.95);
 }
 
 #add-to-shelf-button.active {
