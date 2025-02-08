@@ -6,7 +6,7 @@ This web application allows users to organize their personal library, track thei
 
 ## ✨ Key Features
 
-- ✨ **Book Categorization and Shelves:** Organize books into "To Read," "Reading," and "Completed" shelves using DOM updates.
+- 🗄️ **Book Categorization and Shelves:** Organize books into "To Read," "Reading," and "Completed" shelves using DOM updates.
 - 🔍 **Search and Filter:**  Search for books and filter recommendations by genre.
 - 🚀 **Progress Tracking:**  Track reading progress by moving books between shelves.
 - 🌟 **Book Recommendations:**  Get book suggestions based on user-selected genres, powered by the Google Books API.
