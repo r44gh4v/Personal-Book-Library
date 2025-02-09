@@ -338,14 +338,26 @@ h2,
 /* === Search Container & Input Group === */
 .search-container {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem;
     margin-bottom: 2rem;
     align-items: center;
 }
 
 .search-wrapper {
     position: relative;
+    flex: 3;
+}
+
+.selector-button-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     flex: 1;
+}
+
+#shelf-selector {
+    flex-grow: 1;
+    min-width: 150px;
 }
 
 .search-input-group {
@@ -372,7 +384,7 @@ h2,
 
 #search-bar:focus {
     outline: none;
-    border-color: var(--primary-color);
+    border-color: var (--primary-color);
     box-shadow: var (--shadow);
 }
 
@@ -545,7 +557,7 @@ h2,
 
 .shelf .book-list.drag-over {
     background: var(--accent-color);
-    border-radius: var(--border-radius);
+    border-radius: var (--border-radius);
     padding: 0.5rem;
 }
 
@@ -715,27 +727,28 @@ h2,
 
 /* === Responsive Adjustments for Mobile === */
 @media (max-width: 600px) {
+
     /* Hide scroll buttons on small screens */
     .scroll-btn {
         display: none;
     }
-    
+
     /* Adjust suggestions slider */
     .suggestions-slider {
         margin: 0;
         padding: 0.5rem;
     }
-    
+
     /* Adjust main padding */
     main {
         padding: 0 0.5rem;
     }
-    
+
     /* Adjust shelf grid gaps */
     .shelf-grid {
         gap: 1rem;
     }
-    
+
     /* Adjust book card layout */
     .book-card {
         flex: 0 0 10rem;
@@ -743,23 +756,23 @@ h2,
         min-width: 10rem;
         padding: 0.5rem;
     }
-    
+
     .book-card img {
         width: 8.5rem;
         height: 11rem;
         object-fit: contain;
     }
-    
+
     .pill-header h1 {
         font-size: 2rem;
     }
-    
+
     h2,
     .section-header h2,
     #bookshelf-section h2 {
         font-size: 1.75rem;
     }
-    
+
     #genre-selector,
     #shelf-selector {
         padding: 0.75rem 1rem;
@@ -770,16 +783,16 @@ h2,
         padding-right: 2.5rem;
         border-width: 2px;
     }
-    
+
     /* Search container adjustments for mobile */
     .search-container {
-        flex-direction: column; /* Stack items vertically */
-        align-items: stretch; /* Make items take full width */
-        gap: 0.5rem; /* Reduce gap for smaller screens */
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
     }
 
     .search-wrapper {
-        width: 100%; /* Ensure full width */
+        width: 100%;
     }
 
     /* New container for selector and button */
@@ -787,32 +800,32 @@ h2,
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 0.5rem;
-        width: 100%; /* Take full width */
+        gap: 0.75rem;
+        width: 100%;
     }
 
     #shelf-selector {
-        flex-grow: 1; /* Expand to fill available space */
-        min-width: 0; /* Allow shrinking */
+        flex-grow: 1;
+        min-width: 0;
     }
 
     #add-to-shelf-button {
-        width: 3.125rem; /* Circular width */
-        height: 3.125rem; /* Circular height */
-        padding: 0; /* Remove padding */
-        border-radius: 50%; /* Circular border-radius */
-        font-size: 1.5rem; /* Adjust font-size */
-        margin-top: 0; /* Remove top margin */
-        margin-left: auto; /* Push button to the right */
+        width: 3.125rem;
+        height: 3.125rem;
+        padding: 0;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        margin-top: 0;
+        margin-left: auto;
     }
-    
+
     .book-card h4 {
         font-size: 0.9rem;
         line-height: 1.3;
         height: 2.6em;
         margin-top: 0.3rem;
     }
-    
+
     .book-card p {
         font-size: 0.75rem;
     }
